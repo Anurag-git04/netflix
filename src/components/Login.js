@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import Header from './Header'
+import axios from 'axios';
+import { API_END_POINT } from '../utils/constant';
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -11,8 +13,29 @@ const Login = () => {
     setIsLogin(!isLogin)
   }
 
-  const getInputData=(e)=>{
+  const getInputData= async (e)=>{
     e.preventDefault()
+    if(isLogin){
+      //login
+      const user = {email,password}
+      try{
+        const res = await axios.post(`${API_END_POINT}/login`, user);
+        console.log(res," a ")
+      }catch(error){
+        console.log(error)
+      }
+     
+    }else{
+        //register
+        const user = {fullname,email,password} 
+        try{
+          const res = await axios.post(`${API_END_POINT}/register`,user)
+          console.log(res)
+        }catch(error){
+            console.log(error)
+        }
+    }
+   
     console.log(fullname,email,password);
     setFullname("");
     setEmail("");
