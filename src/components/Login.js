@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import Header from './Header'
 import axios from 'axios';
-import { API_END_POINT } from '../utils/constant';
+import {API_END_POINT} from '../utils/constant'
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(false);
-  const [fullname, setFullname] = useState('');
+  const [fullName, setFullname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -20,23 +20,24 @@ const Login = () => {
       const user = {email,password}
       try{
         const res = await axios.post(`${API_END_POINT}/login`, user);
-        console.log(res," a ")
+        console.log(res)
       }catch(error){
         console.log(error)
       }
      
     }else{
         //register
-        const user = {fullname,email,password} 
-        try{
-          const res = await axios.post(`${API_END_POINT}/register`,user)
-          console.log(res)
-        }catch(error){
-            console.log(error)
-        }
+        const user = {fullName, email, password};
+            try {
+                const res = await axios.post(`${API_END_POINT}/register`,user);
+                console.log(res)
+                
+            } catch (error) {
+               console.log("Error in register")
+            }
     }
    
-    console.log(fullname,email,password);
+    console.log(fullName,email,password);
     setFullname("");
     setEmail("");
     setPassword("");
@@ -52,7 +53,7 @@ const Login = () => {
           <h1 className='text-3xl text-white mb-5 font-bold'>{isLogin ? "Login" : "Sign Up" }</h1>
           <div className='flex flex-col'>
             {
-              !isLogin && <input value={fullname} onChange={(e)=>setFullname(e.target.value)} type='text' placeholder='Full Name' className='outline-none p-3 my-2 rounded-sm bg-gray-800 text-white'/>
+              !isLogin && <input value={fullName} onChange={(e)=>setFullname(e.target.value)} type='text' placeholder='Full Name' className='outline-none p-3 my-2 rounded-sm bg-gray-800 text-white'/>
             }
             <input value={email} onChange={(e)=>setEmail(e.target.value)} type='email' placeholder='Email' className='outline-none p-3 my-2 rounded-sm bg-gray-800 text-white'/>
             <input value={password} onChange={(e)=>setPassword(e.target.value)} type='password' placeholder='Password' className='outline-none p-3 my-2 rounded-sm bg-gray-800 text-white'/>
