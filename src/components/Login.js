@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Header from './Header'
 import axios from 'axios';
 import {API_END_POINT} from '../utils/constant'
+import toast from "react-hot-toast"
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -21,6 +22,9 @@ const Login = () => {
       try{
         const res = await axios.post(`${API_END_POINT}/login`, user);
         console.log(res)
+        if(res.data.success){
+          toast.success(res.data.message)
+        }
       }catch(error){
         console.log(error)
       }
@@ -31,9 +35,13 @@ const Login = () => {
             try {
                 const res = await axios.post(`${API_END_POINT}/register`,user);
                 console.log(res)
+                if(res.data.success){
+                  toast.success(res.data.message);
+                }
                 
             } catch (error) {
-               console.log("Error in register")
+              toast.error(error.response.data.message);
+              console.log("Error in register")
             }
     }
    
