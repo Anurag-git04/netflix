@@ -3,12 +3,14 @@ import Header from './Header'
 import axios from 'axios';
 import {API_END_POINT} from '../utils/constant'
 import toast from "react-hot-toast"
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(false);
   const [fullName, setFullname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate()
 
   const loginInHandler=()=>{
     setIsLogin(!isLogin)
@@ -25,24 +27,27 @@ const Login = () => {
         if(res.data.success){
           toast.success(res.data.message)
         }
+        navigate("/browse")
+
       }catch(error){
+        console.log("NO Login")
         console.log(error)
       }
      
     }else{
         //register
         const user = {fullName, email, password};
-            try {
-                const res = await axios.post(`${API_END_POINT}/register`,user);
-                console.log(res)
-                if(res.data.success){
-                  toast.success(res.data.message);
-                }
-                
-            } catch (error) {
-              toast.error(error.response.data.message);
-              console.log("Error in register")
+        try {
+            const res = await axios.post(`${API_END_POINT}/register`,user);
+            if(res.data.success){
+                toast.success(res.data.message);
             }
+            setIsLogin(true);
+          }catch (error) {
+            // toast.error(error.response.data.message);
+            console.log("no register")
+            console.log(error);
+        }
     }
    
     console.log(fullName,email,password);
