@@ -4,6 +4,8 @@ import axios from 'axios';
 import {API_END_POINT} from '../utils/constant'
 import toast from "react-hot-toast"
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLoading, setUser } from '../redux/userSlice';
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -11,13 +13,16 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
+  const isLoading = useSelector(store=>store.app.isLoading);
   const loginInHandler=()=>{
     setIsLogin(!isLogin)
   }
 
   const getInputData= async (e)=>{
     e.preventDefault()
+    dispatch(setLoading(true));
     if(isLogin){
       //login
       const user = {email,password}
@@ -27,15 +32,19 @@ const Login = () => {
         if(res.data.success){
           toast.success(res.data.message)
         }
+        dispatch(setUser(res.data.user))
         navigate("/browse")
 
       }catch(error){
         console.log("NO Login")
         console.log(error)
+      }finally{
+        dispatch(setLoading(false));
       }
      
     }else{
         //register
+        dispatch(setLoading(true));
         const user = {fullName, email, password};
         try {
             const res = await axios.post(`${API_END_POINT}/register`,user);
@@ -47,7 +56,9 @@ const Login = () => {
             // toast.error(error.response.data.message);
             console.log("no register")
             console.log(error);
-        }
+          }finally{
+            dispatch(setLoading(false));
+          }
     }
    
     console.log(fullName,email,password);
@@ -70,7 +81,7 @@ const Login = () => {
             }
             <input value={email} onChange={(e)=>setEmail(e.target.value)} type='email' placeholder='Email' className='outline-none p-3 my-2 rounded-sm bg-gray-800 text-white'/>
             <input value={password} onChange={(e)=>setPassword(e.target.value)} type='password' placeholder='Password' className='outline-none p-3 my-2 rounded-sm bg-gray-800 text-white'/>
-            <button className='bg-red-600 mt-4 p-3 text-white rounded-md font-medium'>{isLogin?"Login":"Sign up"}</button>
+            <button type='submit' className='bg-red-600 mt-4 p-3 text-white rounded-md font-medium'>{`${isLoading ? "loading...": isLogin ?"Login":"Sign up"}`}</button>
             <p className='text-white mt-2'>{isLogin ? "New to Netflix " : "Already Have an account? " }<span onClick={loginInHandler} className='ml-1 text-red-700 font-medium cursor-pointer'>{isLogin? "Sign Up" : "Login" }</span></p>
 
           </div>
