@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 
 import MovieContainer from './MovieContainer'
+import MainCon from './MainCon'
 
 
 
@@ -13,20 +14,19 @@ const Browse = () => {
   const navigate = useNavigate();
   
   useEffect(() => {
-    return () => {
-      if(!user){
-        navigate('/')
-      }
+    if (!user) {
+        navigate("/");
     }
-  },[])  
+  }, []);
   
  
   return (
     <div>
         <Header/>
-        {/* <MainContainer/> */}
-        <MovieContainer/>
-        {/* <VedioBackground/> */}
+        <div>
+          <MainCon/>
+          <MovieContainer/>
+        </div>
     </div>
   )
 }
