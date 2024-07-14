@@ -1,6 +1,10 @@
 import React from 'react'
+import useMovieById from '../hooks/useMovieById'
 
-const VBg = () => {
+const VBg = ({movieId}) => {
+
+  useMovieById(movieId)
+  
   return (
     <div className='w-screen'>
         <iframe 
