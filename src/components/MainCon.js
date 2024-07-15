@@ -10,7 +10,7 @@ const MainCon = () => {
   console.log("new onew")
   console.log(movie)
 
-  const {overview,id,title} = movie[4]
+  const {overview, id, title}  = movie[4];
 
   return (
     <div>

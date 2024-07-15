@@ -1,7 +1,12 @@
 import React from 'react'
 import useMovieById from '../hooks/useMovieById'
+import { useSelector } from 'react-redux'
 
 const VBg = ({movieId}) => {
+  console.log("movie ides")
+  console.log(movieId)
+
+  const trailer = useSelector(store=> store.movie.trailerMovie)
 
   useMovieById(movieId)
   
