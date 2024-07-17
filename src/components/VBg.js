@@ -7,6 +7,7 @@ const VBg = ({movieId}) => {
   console.log(movieId)
 
   const trailerMovie = useSelector(store=> store.movie.trailerMovie)
+  console.log(trailerMovie)
 
   useMovieById(movieId)
   
@@ -14,10 +15,10 @@ const VBg = ({movieId}) => {
     <div className='w-screen'>
         <iframe 
           className='w-screen aspect-video' 
-          src={`https://www.youtube.com/embed/${trailerMovie.key}?si=tmBvBjj9CVcpqfTa&autoplay=1&mute=1`}
+          src={`https://www.youtube.com/${trailerMovie?.key}embed/?si=tmBvBjj9CVcpqfTa&autoplay=1&mute=1`}
           title="YouTube video player" 
           frameborder="0" 
-          allowfullscreen>
+          allowFullScreen>
         </iframe>
     </div>
   )

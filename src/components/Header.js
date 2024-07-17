@@ -42,20 +42,20 @@ const Header = () => {
         {
           user && (
             <div className='flex items-center'>
-              <IoIosArrowDropdown size="24px" color='white'  />
-              <h1 className='text-lg font-medium text-white'>{user.fullName}</h1>
-              <div className='ml-4'>
-                  <button onClick={logoutHandler} className='bg-red-800 text-white px-4 py-2'>Logout</button>
-                  <button onClick={toggleHandle} className='bg-red-800 text-white px-4 py-2 ml-2'>
-                    {
-                      toggle ? "Home" : "Search Movie" 
+                <IoIosArrowDropdown size="24px" color='white'  />
+                {/* <h1 className='text-lg font-medium text-white'>{user.fullName}</h1> */}
+                <div className='ml-4'>
+                    <button onClick={logoutHandler} className='bg-red-800 text-white px-4 py-2'>Logout</button>
+                    <button onClick={toggleHandle} className='bg-red-800 text-white px-4 py-2 ml-2'>
+                      {
+                        toggle ? "Home" : "Search Movie" 
 
-                    }</button>
-              </div>
-          </div>
+                      }</button>
+                </div>
+            </div> 
           )
-
         }
+       
       
     </div>
   )

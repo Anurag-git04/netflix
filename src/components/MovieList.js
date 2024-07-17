@@ -7,12 +7,12 @@ const MovieList = ({title, movie}) => {
         <div className='flex overflow-x-auto no-scrollbar cursor-pointer'>
             <div className='flex items-center'>
                 {
-                movie?.map((movie)=>{
-                    return (
-                        <MovieCart key={movie.id} posterPath={movie.poster_path} />
-                    )
-                })
-            }
+                    movie?.map((movie)=>{
+                        return (
+                            <MovieCart key={movie.id}  posterPath={movie.poster_path} />
+                        )
+                    })
+                }
             </div>
         </div>
     </div>

@@ -11,3 +11,5 @@ export const Popular_Movies = `https://api.themoviedb.org/3/movie/popular`
 export const TopRated_Movies =  `https://api.themoviedb.org/3/movie/top_rated`
 export const Upcoming_Movies = `https://api.themoviedb.org/3/movie/upcoming`
 export const Banner_Url = "https://image.tmdb.org/t/p/w500"
+
+export const  SEARCH_MOVIE_URL="https://api.themoviedb.org/3/search/movie?query=";

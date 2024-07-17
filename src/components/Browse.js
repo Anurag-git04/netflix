@@ -19,7 +19,7 @@ import SearchMovie from './SearchMovie'
 
 
 const Browse = () => {
-  const user = useSelector(store=>store.app.user)
+  // const user = useSelector(store=>store.app.user)
   const toggle = useSelector(store=>store.movie.toggle)
   const navigate = useNavigate();
   // const dispatch = useDispatch();
@@ -28,12 +28,12 @@ const Browse = () => {
   useTopRatedMovies()
   useUpcomingMovies()
   
-  useEffect(() => {
-    if (!user) {
-      navigate("/");
-    }
-    // nowPlayingMovies()
-  },[]);
+  // useEffect(() => {
+  //   if (!user) {
+  //     navigate("/");
+  //   }
+  //   nowPlayingMovies()
+  // },[]);
   
  
   return (
