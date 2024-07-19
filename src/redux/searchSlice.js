@@ -9,16 +9,13 @@ const searchSlice = createSlice({
     reducers:{
         //actions
         setSearchedMoviesDetails:(state,action)=>{
-            const {searchMovie,movies} = action.payload
+            const {searchMovie,movies} = action.payload;
+            state.movieName=searchMovie;
+            state.searchedMovie=movies;
         },
-        setMovieName:(state,action)=>{
-            state.movieName = action.payload
-        },
-        setSearchedMovies:(state,action)=>{
-            state.searchedMovie = action.payload
-        }
+       
     }
 })
 
-export const {setMovieName, setSearchedMovies} = searchSlice.actions
+export const {setSearchedMoviesDetails} = searchSlice.actions
 export default searchSlice.reducer

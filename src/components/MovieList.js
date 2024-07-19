@@ -9,7 +9,7 @@ const MovieList = ({title, movie}) => {
                 {
                     movie?.map((movie)=>{
                         return (
-                            <MovieCart key={movie.id}  posterPath={movie.poster_path} />
+                            <MovieCart key={movie.id} movieId={movie.id}  posterPath={movie.poster_path} />
                         )
                     })
                 }
